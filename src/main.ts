@@ -1,4 +1,5 @@
 import { NestFactory } from '@nestjs/core';
+
 import { IndexModule } from './index.module';
 
 async function bootstrap() {

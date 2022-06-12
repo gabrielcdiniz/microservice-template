@@ -5,8 +5,14 @@ module.exports = {
     tsconfigRootDir: __dirname,
     sourceType: 'module',
   },
-  plugins: ['@typescript-eslint/eslint-plugin', 'jest'],
-  extends: ['eslint:recommended'],
+  plugins: [
+    '@typescript-eslint/eslint-plugin',
+    'eslint-plugin-import',
+    'eslint-plugin-import-helpers',
+    'jest',
+  ],
+  extends: ['eslint:recommended', 'plugin:import/typescript'],
+  noInlineConfig: true,
   root: true,
   env: {
     node: true,
@@ -18,6 +24,18 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
+    'import-helpers/order-imports': [
+      'error',
+      {
+        newlinesBetween: 'always',
+        groups: [
+          'module',
+          '/^@(modules|lib|common|enums|interfaces)/',
+          ['parent', 'sibling', 'index'],
+        ],
+        alphabetize: { order: 'asc', ignoreCase: true },
+      },
+    ],
   },
   overrides: [
     {
