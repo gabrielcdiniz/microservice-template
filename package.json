@@ -6,7 +6,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "predeploy": "rimraf .build",
+    "predeploy": "rimraf .build .tsbuildinfo",
     "deploy": "export NODE_ENV=deploy && sls deploy --verbose -s",
     "postdeploy": "rimraf .tsbuildinfo",
     "undeploy": "sls remove --verbose -s",
