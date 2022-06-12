@@ -10,7 +10,6 @@
     "deploy": "export NODE_ENV=deploy && sls deploy --verbose -s",
     "postdeploy": "rimraf .tsbuildinfo",
     "undeploy": "sls remove --verbose -s",
-    "prebuild": "rimraf dist",
     "prelint": "eslint \"src/**/*.ts\" --fix",
     "lint": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "dev": "export NODE_ENV=local && nest start --watch",
