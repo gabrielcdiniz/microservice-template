@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src/",
+    "paths": {
+      "@common/*": ["common/*"],
+      "@enums/*": ["enums/*"],
+      "@interfaces/*": ["interfaces/*"],
+      "@lib/*": ["lib/*"],
+      "@modules/*": ["modules/*"]
+    }
+  }
+}
