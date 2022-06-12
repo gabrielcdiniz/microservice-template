@@ -18,7 +18,7 @@ provider:
   stage: ${opt:stage, 'dev'}
 
   deploymentBucket:
-    name: ace-one-${self:service}-${self:provider.stage}
+    name: my-template-${self:service}-${self:provider.stage}
     serverSideEncryption: AES256
 
 custom:
