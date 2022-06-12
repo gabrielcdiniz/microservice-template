@@ -1,33 +1,42 @@
 {
   "name": "ms-crud-template",
-  "version": "0.0.1",
+  "version": "1.2206.0",
   "description": "Microservice CRUD Template with AWS and NestJS",
   "author": "ACE 1",
   "private": true,
   "license": "MIT",
   "scripts": {
+    "predeploy": "rimraf .build",
+    "deploy": "export NODE_ENV=deploy && sls deploy --verbose -s",
+    "postdeploy": "rimraf .tsbuildinfo",
+    "undeploy": "sls remove --verbose -s",
     "prebuild": "rimraf dist",
-    "build": "nest build",
-    "prelint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "prelint": "eslint \"{src,apps,libs}/**/*.ts\" --fix",
     "lint": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start": "nest start",
-    "start:dev": "nest start --watch",
-    "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main",
-    "test": "jest",
-    "test:watch": "jest --watch",
+    "dev": "export NODE_ENV=local && nest start --watch",
+    "start": "export NODE_ENV=local && sls offline start --allowCache --httpPort 3000 --lambdaPort 3333 --stage dev",
+    "invoke": "export NODE_ENV=local && sls invoke local -f",
+    "inspect": "sls info --verbose -s",
+    "test": "export NODE_ENV=test && jest",
     "test:cov": "jest --coverage",
-    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "prepare": "husky install"
   },
   "dependencies": {
     "@nestjs/common": "^8.0.0",
     "@nestjs/core": "^8.0.0",
-    "@nestjs/platform-express": "^8.0.0",
+    "@nestjs/platform-express": "^8.4.6",
+    "@types/aws-lambda": "^8.10.99",
+    "@types/aws-serverless-express": "^3.3.5",
+    "aws-lambda": "^1.0.7",
+    "aws-serverless-express": "^3.4.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^7.2.0"
+    "rxjs": "^7.2.0",
+    "serverless-deployment-bucket": "^1.6.0",
+    "serverless-offline": "^8.8.0",
+    "serverless-plugin-typescript": "^2.1.2",
+    "serverless-tscpaths": "^0.0.7"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.2",
@@ -45,6 +54,7 @@
     "cz-conventional-changelog": "3.3.0",
     "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-jest": "^26.5.3",
     "eslint-plugin-prettier": "^4.0.0",
     "husky": "^8.0.1",
     "jest": "28.0.3",
@@ -73,10 +83,13 @@
       "**/*.(t|j)s"
     ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "moduleNameMapper": {
+      "@modules/(.*)": "<rootDir>/src/modules/$1"
+    }
   },
   "lint-staged": {
-    "*.ts": [
+    "!(*test|spec).(t|j)s": [
       "yarn lint"
     ]
   },
