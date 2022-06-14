@@ -1,3 +1,7 @@
+## Pre Requisites
+
+- Global 
+  - Installation - [Commitizen](https://github.com/commitizen/cz-cli#installing-the-command-line-tool)
 
 ## Description
 
