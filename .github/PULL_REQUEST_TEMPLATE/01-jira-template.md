@@ -12,9 +12,9 @@ Detalhe as alterações que foram realizadas nesta tarefa:
 
 # Ambiente *
 
-- [] Desenvolvimento
-- [] Homologação
-- [] Produção
+- [ ] Desenvolvimento
+- [ ] Homologação
+- [ ] Produção
 
 # Testes Realizados *
 Descreva quais testes foram executados durante esta tarefa:
