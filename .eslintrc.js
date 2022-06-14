@@ -30,7 +30,7 @@ module.exports = {
         newlinesBetween: 'always',
         groups: [
           'module',
-          '/^@(modules|lib|common|enums|interfaces)/',
+          '/^@(modules|lib|common|enums|interfaces|index)/',
           ['parent', 'sibling', 'index'],
         ],
         alphabetize: { order: 'asc', ignoreCase: true },
